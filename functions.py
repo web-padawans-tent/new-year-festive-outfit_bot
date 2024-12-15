@@ -107,7 +107,6 @@ def add_user_to_channel(user_id):
     requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={user_id}&text=Дякуємо за оплату! Ваша місячна підписка на канал LookBook активована.")
     requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={ADMIN_ID}&text=Користувач @{dbuser[0]} - {dbuser[1]} доданий до каналу!")
     requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={ADMIN_ID2}&text=Користувач @{dbuser[0]} - {dbuser[1]} доданий до каналу!")
-    requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={ADMIN_ID3}&text=Користувач @{dbuser[0]} - {dbuser[1]} доданий до каналу!")
 
 def delete_user_from_channel(user_id):
     user_info = get_user_info_from_telegram(user_id)

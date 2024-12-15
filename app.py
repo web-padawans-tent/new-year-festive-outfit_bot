@@ -65,10 +65,15 @@ color: #050505;
 cursor: pointer;
 transition: background-color 0.3s ease;
 }
-.lookbook{
+.lookbook__btn{
     background-color: #000000;
     border: 1px solid #ffffff;
+}
+.lookbook__btn_white {
     color: #ffffff;
+}
+.lookbook__btn_red {
+    color: #b84b27;
 }
 </style>
 </head>
@@ -77,8 +82,8 @@ transition: background-color 0.3s ease;
 <div class="container">
 <a href="https://t.me/sveta_kosovska" class="btn btn-telegram">Telegram</a>
 <a href="https://www.instagram.com/sveta_kosovska" class="btn btn-instagram">Instagram</a>
-<a href="https://t.me/+i8D-g8m5_Ak2MDNi" class="btn lookbook">LookBook</a>
-<a href="https://t.me/+D6AUy8eFDxQ1YTQy" class="btn lookbook">New year festive outfit</a>
+<a href="https://t.me/+D6AUy8eFDxQ1YTQy" class="btn lookbook__btn lookbook__btn_red">Festive Lookbook</a>       
+<a href="https://t.me/+i8D-g8m5_Ak2MDNi" class="btn lookbook__btn lookbook__btn_white">LookBook</a>
 <a href="https://ssk24test.my.canva.site/daglhozlvg0" class="btn btn-other">Ціни на послуги</a>
 <a href="https://t.me/kosovskamanager" class="btn btn-support">Підтримка</a>
 </div>
@@ -204,5 +209,5 @@ def pay(user_id):
 
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5001))
+    port = int(os.environ.get('PORT', 80))
     app.run(debug=True, host='0.0.0.0', port=port)
