@@ -7,7 +7,8 @@ from loader import SECRET_KEY, BOT_TOKEN, CHANNEL_ID, ADMIN_ID, ADMIN_ID2, ADMIN
 import sqlite3
 
 
-def generate_merchant_signature(merchant_account, merchant_domain, order_reference, order_date, amount, currency, product_name, product_price, product_count):
+def generate_merchant_signature(merchant_account, merchant_domain, order_reference, order_date, amount, currency,
+                                product_name, product_price, product_count):
     signature_string = f"{merchant_account};{merchant_domain};{order_reference};{order_date};{amount};{currency};"
     signature_string += f"{';'.join(product_name)};{';'.join(map(str, product_count))};{';'.join(map(str, product_price))}"
     hash_signature = hmac.new(SECRET_KEY.encode('utf-8'), signature_string.encode('utf-8'), digestmod='md5').hexdigest()
@@ -22,6 +23,7 @@ def generate_signature(order_reference, status, current_time, secret_key=SECRET_
 
 def extract_user_id_from_reference(order_reference):
     return order_reference.split("_")[1]
+
 
 def get_user_info_from_telegram(user_id):
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/getChatMember"
@@ -65,6 +67,7 @@ def check_user_in_subs(user_id):
         print(f"Failed to get data. Status code: {response.status_code}")
         return False
 
+
 def get_table_data(table_name):
     try:
         conn = sqlite3.connect('database.db')  # Укажите путь к вашей базе данных
@@ -83,6 +86,7 @@ def get_table_data(table_name):
         return [dict(zip(column_names, row)) for row in rows]
     except Exception as e:
         return {"error": str(e)}  # Возвращаем ошибку в формате JSON
+
 
 def get_table_names():
     try:
@@ -107,6 +111,8 @@ def add_user_to_channel(user_id):
     requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={user_id}&text=Дякуємо за оплату! Ваша місячна підписка на канал LookBook активована.")
     requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={ADMIN_ID}&text=Користувач @{dbuser[0]} - {dbuser[1]} доданий до каналу!")
     requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={ADMIN_ID2}&text=Користувач @{dbuser[0]} - {dbuser[1]} доданий до каналу!")
+    requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={ADMIN_ID3}&text=Користувач @{dbuser[0]} - {dbuser[1]} доданий до каналу!")
+
 
 def delete_user_from_channel(user_id):
     user_info = get_user_info_from_telegram(user_id)
@@ -130,7 +136,7 @@ def delete_user_from_channel(user_id):
             username = user_info.get('username', 'Неизвестно')
             fullname = f"{user_info.get('first_name', '')} {user_info.get('last_name', '')}"
 
-            requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={ADMIN_ID}&text=Користувачa @{username} - {fullname} видалено каналу!")
+            requests.get(
+                f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={ADMIN_ID}&text=Користувачa @{username} - {fullname} видалено каналу!")
     else:
         print("Помилка при видаленні користувача:", ban_response.json())
-

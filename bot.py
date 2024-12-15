@@ -10,7 +10,6 @@ dp = Dispatcher()
 router = Router()
 
 @router.chat_join_request()
-@router.chat_join_request()
 async def handle_join_request(chat_join_request: ChatJoinRequest):
     try:
         chat_id = chat_join_request.chat.id
@@ -35,13 +34,13 @@ async def handle_join_request(chat_join_request: ChatJoinRequest):
 
 async def send_payment_link(user_id):
     text = (
-        "Вітаю! 🤍Я адміністратор закритого каналу Daily LookBook від Світлани Косовської. "
-        "Після оплати ви отримаєте доступ до наших повсякденних образів та натхнення. "
+        "Вітаю! 🤍Я адміністратор закритого каналу FestiveLookbook від Світлани Косовської."
+        "Після оплати ви отримаєте доступ до наших святкових образів і вашого натхнення."
         "Чекаємо на вас у нашій спільноті!\n\n"
-        "<a href='https://lookbookdaily.my.canva.site/pt'>Умови використання</a>\n"
-        "<a href='https://lookbookdaily.my.canva.site/o'>Договір оферти</a>\n"
-        "<a href='https://lookbookdaily.my.canva.site/pk'>Політика конфіденційності</a>\n"
-        "<a href='https://lookbookdaily.my.canva.site/pp'>Політика повернення</a>"
+        "<a href='https://umovivikoristanyafestiveoutfit.my.canva.site'>Умови використання</a>\n"
+        "<a href='https://umovivikoristanyafestiveoutfit.my.canva.site/1-1-1-tessslegram-lookbook-daily'>Договір оферти</a>\n"
+        "<a href='https://umovivikoristanyafestiveoutfit.my.canva.site/festivelookboosk-pdf'>Політика конфіденційності</a>\n"
+        "<a href='https://umovivikoristanyafestiveoutfit.my.canva.site/lookbook-sssdaily-1-1-1-lookbook-1-2'>Політика повернення</a>"
     )
     reply_markup = InlineKeyboardMarkup(
         inline_keyboard=[
